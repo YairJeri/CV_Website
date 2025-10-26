@@ -1,0 +1,45 @@
+---
+interface Props {
+    id?: string;
+    src: string;
+    class?: string;
+    classSpan?: string;
+}
+
+const {
+    id: idName,
+    src: src,
+    class: className,
+    classSpan: classSpan,
+} = Astro.props;
+
+import fs from "fs";
+import path from "path";
+
+const svgPath = path.resolve(`./public${src}`);
+let svgContent = "";
+
+try {
+    svgContent = fs.readFileSync(svgPath, "utf8");
+
+    // 1️⃣ Quitar atributos de color preexistentes (fill y stroke)
+    svgContent = svgContent.replace(/\s(fill|stroke)="[^"]*"/g, "");
+
+    // 2️⃣ Agregar clase de Tailwind al <svg>
+    if (className) {
+        svgContent = svgContent.replace(
+            /<svg([^>]*)>/,
+            `<svg$1 class="${className}" fill="currentColor" stroke="currentColor">`,
+        );
+    } else {
+        svgContent = svgContent.replace(
+            /<svg([^>]*)>/,
+            `<svg$1 fill="currentColor" stroke="currentColor">`,
+        );
+    }
+} catch (err) {
+    console.error(`No se pudo cargar el SVG: ${src}`, err);
+}
+---
+
+<span id={idName} set:html={svgContent} class={classSpan} />
