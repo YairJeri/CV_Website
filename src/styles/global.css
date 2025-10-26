@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-default: "Roboto", system-ui, -apple-system, "Segou UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Ubuntu", "sans-serif";
+  --font-nav: "Nunito", "sans-serif";
+
+  --color-bg: #1f1f1f;
+  --color-default: #ffffff;
+  --color-heading: #ffffff;
+  --color-accent: #ececec;
+  --color-surface: #232323;
+  --color-contrast: #310606;
+
+  --color-nav: rgba(236,236,236, 0.59);
+  --color-nav-hover: #ffffff;
+  --color-nav-mobile-bg: #393939;
+
+}
+
+:root {
+
+  scroll-behavior: smooth;
+}
