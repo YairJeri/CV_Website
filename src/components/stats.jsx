@@ -8,7 +8,23 @@ export default function Stats() {
         { value: 20, label: "Technologies explored", color: "amber-600", icon: TecnologiesIcon },
         { value: 5, label: "Personal Projects", color: "cyan-500", icon: PersonalProjectsIcon },
         { value: 10000, label: "Skill Growth", color: "lime-500", icon: SkillGrowthIcon, infinite: true },
+
     ];
+    const colorClasses = {
+        "amber-600": {
+            bg: "bg-amber-600/40",
+            text: "text-amber-600"
+        },
+        "cyan-500": {
+            bg: "bg-cyan-500/40",
+            text: "text-cyan-500"
+        },
+        "lime-500": {
+            bg: "bg-lime-500/40",
+            text: "text-lime-500"
+        }
+    };
+
 
     const counters = useRef([]);
     const sectionRef = useRef(null);
@@ -49,8 +65,8 @@ export default function Stats() {
                                 el.textContent = current;
 
                                 // Empieza a hacer fade entre 70% y 100%
-                                if (progress >= 0.6) {
-                                    const fadeProgress = (progress - 0.7) / 0.3; // 0 → 1
+                                if (progress >= 0.4) {
+                                    const fadeProgress = (progress - 0.4) / 0.3; // 0 → 1
                                     el.style.opacity = 1 - fadeProgress;
                                     infinityEl.style.opacity = fadeProgress;
                                 }
@@ -102,10 +118,10 @@ export default function Stats() {
                                 className="group bg-linear-to-br from-surface/95 to-surface rounded-2xl py-10 px-5 text-center relative duration-300 ease-in overflow-hidden hover:-translate-y-5"
                             >
                                 <div
-                                    className={`bg-${stat.color}/40 text-${stat.color} animate-pulse group-hover:scale-110 w-20 h-20 rounded-full flex items-center justify-center mt-0 mx-auto mb-5 duration-300`}
+                                    className={`${colorClasses[stat.color].bg} ${colorClasses[stat.color].text} animate-pulse group-hover:scale-110 w-20 h-20 rounded-full flex items-center justify-center mt-0 mx-auto mb-5 duration-300`}
                                     dangerouslySetInnerHTML={{ __html: stat.icon }}
                                 />
-                                <span className={`relative counter text-5xl font-bold mb-2.5 font-heading text-${stat.color}`}>
+                                <span className={`relative counter text-5xl font-bold mb-2.5 font-heading ${colorClasses[stat.color].text}`}>
                                     <span
                                         ref={(el) => (counters.current[i] = el)}
                                         data-value={stat.value}
