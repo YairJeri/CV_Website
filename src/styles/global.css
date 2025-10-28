@@ -1,22 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-default: "Roboto", system-ui, -apple-system, "Segou UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: "Ubuntu", "sans-serif";
-  --font-nav: "Nunito", "sans-serif";
+  --font-default: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Poppins", "Inter", sans-serif;
+  --font-nav: "Inter", sans-serif;
 
-  --color-bg: #1f1f1f;
-  --color-default: #ffffff;
+  --color-bg: #0f1116;
+  --color-surface: #161920;
+  --color-default: #e5e7eb;
   --color-heading: #ffffff;
-  --color-accent: #ececec;
-  --color-surface: #232323;
-  --color-contrast: #310606;
-
-  --color-nav: rgba(236,236,236, 0.59);
-  --color-nav-hover: #ffffff;
-  --color-nav-mobile-bg: #393939;
-
+  --color-accent: #6366f1;      /* Indigo-500 */
+  --color-contrast: #1e1b4b;    /* Indigo-700 */
+  --color-nav: rgba(229,231,235,0.7);
+  --color-nav-hover: #3730a3;   /* Indigo-300 */
+  --color-nav-mobile-bg: #1f2937;
 }
+
 
 :root {
 
@@ -30,11 +29,6 @@
   50% {
     transform: translateY(-20px);
   }
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: var(--len); }
 }
 
 @keyframes blink {
