@@ -52,7 +52,6 @@ export default function Skills() {
         }
     }, []);
 
-    // Contador global para las referencias
     let counter = 0;
 
     return (
