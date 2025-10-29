@@ -27,11 +27,11 @@ const socialLinks = [
                     Yair Jeri
                 </h2>
                 <p class="text-2xl mb-5 text-default">
-                    <span> I'm </span>
+                    <span> I'm a </span>
                     <span id="typed-container" class="border-accent pb-0.5"
                         ><span
                             id="typed"
-                            class="text-accent font-semibold border-accent whitespace-nowrap overflow-hidden border-r-2 typing"
+                            class="text-accent font-semibold border-accent whitespace-nowrap overflow-hidden border-r-2 animate-blink"
                         ></span>
                     </span>
                 </p>
@@ -92,12 +92,6 @@ const socialLinks = [
     </div>
 </section>
 
-<style>
-    .typing {
-        animation: blink 0.8s step-end infinite alternate;
-    }
-</style>
-
 <script type="module">
     const el = document.getElementById("typed");
     const container = document.getElementById("typed-container");
@@ -125,7 +119,6 @@ const socialLinks = [
             const text = roles[index];
 
             await wait(pauseTime);
-            // Escribir
             for (let i = 1; i <= text.length; i++) {
                 el.textContent = text.slice(0, i);
                 container.classList.add("border-b-2");
@@ -134,13 +127,11 @@ const socialLinks = [
 
             await wait(pauseTime);
 
-            // Borrar letra por letra
             for (let i = text.length; i > 0; i--) {
-                el.textContent = text.slice(0, i - 1) || "\u200B"; // zero-width space
+                el.textContent = text.slice(0, i - 1) || "\u200B";
                 await wait(deletingSpeed);
             }
 
-            // Cuando termina de borrar, mantenemos zero-width space para que no colapse
             el.textContent = "\u200B";
             container.classList.remove("border-b-2");
 
