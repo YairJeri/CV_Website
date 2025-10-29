@@ -7,7 +7,7 @@ export default function Stats() {
     const stats = [
         { value: 20, label: "Technologies explored", color: "amber-600", icon: TecnologiesIcon },
         { value: 5, label: "Personal Projects", color: "cyan-500", icon: PersonalProjectsIcon },
-        { value: 10000, label: "Skill Growth", color: "lime-500", icon: SkillGrowthIcon, infinite: true },
+        { value: 1000000, label: "Potential", color: "lime-500", icon: SkillGrowthIcon, infinite: true },
 
     ];
     const colorClasses = {
@@ -39,10 +39,9 @@ export default function Stats() {
                         if (!el) return;
 
                         const end = parseInt(el.dataset.value);
-                        const duration = 2500;
+                        const duration = 4000;
                         const startTime = performance.now();
 
-                        // Crea un span extra para el símbolo ∞
                         if (stats[i].infinite) {
                             const infinityEl = document.createElement("span");
                             infinityEl.textContent = "∞";
@@ -54,7 +53,6 @@ export default function Stats() {
                             infinityEl.style.opacity = "0";
                             infinityEl.style.transition = "opacity 0.6s ease";
                             el.parentElement.appendChild(infinityEl);
-                            // el.style.position = "relative";
 
                             function animate(time) {
                                 const elapsed = time - startTime;
@@ -63,10 +61,8 @@ export default function Stats() {
                                 const current = Math.floor(eased * end);
 
                                 el.textContent = current;
-
-                                // Empieza a hacer fade entre 70% y 100%
-                                if (progress >= 0.4) {
-                                    const fadeProgress = (progress - 0.4) / 0.3; // 0 → 1
+                                if (progress >= 0.2) {
+                                    const fadeProgress = (progress - 0.2) / 0.8;
                                     el.style.opacity = 1 - fadeProgress;
                                     infinityEl.style.opacity = fadeProgress;
                                 }
@@ -74,7 +70,6 @@ export default function Stats() {
                                 if (progress < 1) requestAnimationFrame(animate);
                                 else {
                                     el.style.opacity = "0";
-                                    // el.style.display = "none";
                                     infinityEl.style.opacity = "1";
                                 }
                             }
@@ -111,16 +106,21 @@ export default function Stats() {
         >
             <div className="px-10 w-full">
                 <div className="content-center justify-center">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
+                    <div className="flex flex-wrap justify-center gap-6">
                         {stats.map((stat, i) => (
                             <div
                                 key={i}
-                                className="group bg-linear-to-br from-surface/95 to-surface rounded-2xl py-10 px-5 text-center relative duration-300 ease-in overflow-hidden hover:-translate-y-5"
+                                className="group bg-linear-to-br from-surface/95 to-surface rounded-2xl py-10 px-5 text-center relative duration-300 ease-in overflow-hidden hover:-translate-y-5 min-w-60 flex-1"
                             >
-                                <div
-                                    className={`${colorClasses[stat.color].bg} ${colorClasses[stat.color].text} animate-pulse group-hover:scale-110 w-20 h-20 rounded-full flex items-center justify-center mt-0 mx-auto mb-5 duration-300`}
-                                    dangerouslySetInnerHTML={{ __html: stat.icon }}
-                                />
+                                <div className="relative w-24 h-24 flex items-center justify-center mt-0 mx-auto mb-5 group-hover:scale-110 duration-300">
+                                    <div className={`${colorClasses[stat.color].bg} absolute w-28 h-28 rounded-full animate-pulse`} />
+                                    <div className={`${colorClasses[stat.color].text} absolute w-20 h-20 bg-surface/50 rounded-full flex items-center justify-center z-10 overflow-hidden`}>
+                                        <div
+                                            dangerouslySetInnerHTML={{ __html: stat.icon }}
+                                        />
+                                    </div>
+                                </div>
+
                                 <span className={`relative counter text-5xl font-bold mb-2.5 font-heading ${colorClasses[stat.color].text}`}>
                                     <span
                                         ref={(el) => (counters.current[i] = el)}

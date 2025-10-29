@@ -4,6 +4,7 @@ import About from "../components/about.astro";
 import Background from "../components/background.astro";
 import Home from "../components/home.astro";
 import Stats from "../components/stats.jsx";
+import Skills from "../components/skills.jsx";
 ---
 
 <Layout>
@@ -11,6 +12,7 @@ import Stats from "../components/stats.jsx";
         <Background />
         <Home />
         <About />
-        <Stats client:idle />
+        <Stats client:visible />
+        <Skills client:visible />
     </div>
 </Layout>
