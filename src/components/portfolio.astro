@@ -1,0 +1,26 @@
+---
+const projects = Object.values(
+    import.meta.glob("../content/portfolio/*.md", { eager: true }),
+);
+
+console.log(projects);
+---
+
+<section id="portfolio">
+    <h2>Portafolio</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+            projects.map((project) => (
+                <div class="card">
+                    <img
+                        src={project.frontmatter.image}
+                        alt={project.frontmatter.title}
+                    />
+                    <h3>{project.frontmatter.title}</h3>
+                    <p>{project.frontmatter.description}</p>
+                    <a href={project.frontmatter.url}>Ver proyecto</a>
+                </div>
+            ))
+        }
+    </div>
+</section>
