@@ -1,9 +1,10 @@
 ---
 title: "Wildfire Detection"
 description: "A Python-based pipeline that detects wildfire-prone areas from satellite imagery using classical image processing — no machine learning involved."
-image: "Wildfire.webp"
+image: "../assets/Wildfire.webp"
 github: "https://github.com/YairJeri/WildFireDetection"
 tags: ["Python", "OpenCV", "Image Processing"]
+lang: "en"
 ---
 
 A fully handcrafted image processing pipeline built with **OpenCV** and **NumPy**, designed to identify wildfire-prone zones from satellite images.

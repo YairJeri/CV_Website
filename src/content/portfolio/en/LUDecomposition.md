@@ -1,10 +1,11 @@
 ---
 title: "LU Decomposition"
 description: "Interactive web app for performing LU and Cholesky decompositions on square matrices, helping users visualize and understand matrix factorization."
-image: "LUDecomposition.png"
+image: "../assets/LUDecomposition.png"
 github: "https://github.com/YairJeri/AlgebraLineal.git"
 url: "https://algebra-lineal-ebon.vercel.app/"
 tags: ["Web Development"]
+lang: "en"
 ---
 
 **LU Decomposition** is a web application that allows users to input square matrices (n × n) and automatically decomposes them using the most appropriate method:

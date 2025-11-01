@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/layout.astro";
+import About from "../../components/about.astro";
+import Home from "../../components/home.astro";
+import Stats from "../../components/stats.jsx";
+import Skills from "../../components/skills.jsx";
+import Portfolio from "../../components/portfolio.jsx";
+
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import { getTranslations, availableLangs } from "../../i18n";
+
+export async function getStaticPaths() {
+    return availableLangs.map((lang) => ({
+        params: { lang },
+    }));
+}
+
+const { lang } = Astro.params;
+const t = await getTranslations(lang);
+
+const projectsRaw = await getCollection("portfolio");
+
+const projectsTemp = await Promise.all(
+    projectsRaw.map(async (p) => {
+        const optimizedImage = await getImage({
+            src: p.data.image,
+            format: "webp",
+        });
+
+        return {
+            ...p,
+            optimizedImage,
+        };
+    }),
+);
+
+const projects = projectsTemp.filter((p) => p.data.lang === lang);
+---
+
+<Layout title="Yair Jeri's CV" lang={lang} t={t}>
+    <Home t={t} />
+    <About t={t} />
+    <Stats t={t} client:visible />
+    <Skills t={t} client:visible />
+    <Portfolio projects={projects} lang={lang} t={t} client:visible />
+</Layout>

@@ -8,6 +8,7 @@ const portfolio = defineCollection({
         github: z.string().optional(),
         url: z.string().optional(),
         tags: z.array(z.string()),
+        lang: z.string(),
     }),
 });
 

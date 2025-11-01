@@ -1,29 +1,28 @@
 import { useEffect, useRef } from "preact/hooks";
 
-export default function Skills() {
+export default function Skills({ t }) {
     const skillsData = [
-
         {
-            category: "Frameworks & Libraries",
+            category: t.skills.categories[0],
             color: "from-cyan-500/20 to-cyan-500/10",
             items: ["Astro", "Preact/React", "TailwindCSS", "Node.js", "Express", "Angular", "three.js", "TensorFlow", "Flask", "GraphQL"],
         },
         {
-            category: "Databases",
+            category: t.skills.categories[1],
             color: "from-lime-500/20 to-lime-500/10",
             items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Turso", "SQL Server"],
         },
         {
-            category: "Design",
+            category: t.skills.categories[2],
             color: "from-pink-500/20 to-pink-500/10",
             items: ["Figma", "Canva", "UI/UX Principles"],
         },
         {
-            category: "Tools & DevOps",
+            category: t.skills.categories[3],
             color: "from-amber-500/20 to-amber-500/10",
-            items: ["Git", "Github", "Docker", "VSCode", "Notion", "Godot", "Linux"],
+            items: ["Git", "Github", "Docker", "VSCode", "Notion", "Godot", "Linux", "AWS"],
         }, {
-            category: "Languages",
+            category: t.skills.categories[4],
             color: "from-purple-500/20 to-purple-500/10",
             items: ["JavaScript", "Python", "C++", "C#", "C", "TypeScript", "HTML5", "CSS3", "Java", "Spring", "Bash"],
         },
@@ -57,9 +56,9 @@ export default function Skills() {
     return (
         <section id="Skills" className="relative">
             <div className="max-w-6xl mx-auto text-center mb-12">
-                <h2 className="text-4xl font-bold mb-3 tracking-tight">Skills</h2>
+                <h2 className="text-4xl font-bold mb-3 tracking-tight"> {t.skills.title} </h2>
                 <p className="text-default/80 text-base max-w-2xl mx-auto">
-                    My expertise spans multiple areas — constantly expanding as I explore new technologies and tools.
+                    {t.skills.description}
                 </p>
             </div>
 
@@ -67,7 +66,7 @@ export default function Skills() {
                 {skillsData.map((group, i) => (
                     <div
                         key={i}
-                        className={`group relative min-w-60 flex-1 rounded-2xl p-8 shadow-lg bg-linear-to-br ${group.color} border border-white/5 hover:-translate-y-3 hover:shadow-xl transition-all duration-300`}
+                        className={`group relative flex-1 min-w-72 rounded-2xl p-8 shadow-lg bg-linear-to-br ${group.color} border border-white/5 hover:-translate-y-3 hover:shadow-xl transition-all duration-300`}
                     >
                         <h3 className="text-lg font-semibold mb-6 uppercase tracking-wide text-default">
                             {group.category}
@@ -106,9 +105,11 @@ function SkillIcon({ name, size = 32 }) {
         "Node.js": "nodejs",
         "SQL Server": "microsoftsqlserver",
         "three.js": "threejs",
+        "AWS": "amazonwebservices",
     }
     const sufixMappings = {
         "GraphQL": "plain",
+        "AWS": "original-wordmark",
     }
 
 

@@ -4,11 +4,18 @@ import Icon from "./icon.astro";
 import TypedText from "../components/typedtext.jsx";
 
 import photo from "../assets/images/photo.jpg";
+import type { Translations } from "../i18n/en";
 
 const socialLinks = [
     { href: "#", label: "Github", icon: "/github.svg" },
     { href: "#", label: "Linkedin", icon: "/linkedin.svg" },
 ];
+
+export interface Props {
+    t: Translations;
+}
+
+const { t } = Astro.props;
 ---
 
 <section
@@ -21,39 +28,42 @@ const socialLinks = [
                 <h1
                     class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4 text-heading"
                 >
-                    Dev <span
+                    {t.home.title[0]}
+                    <span
                         class="text-accent relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-1 after:bg-linear-to-t after:from-accent after:to-accent/50"
                     >
-                        Portfolio</span
+                        {t.home.title[1]}</span
                     >
                 </h1>
                 <h2 class="text-2xl md:text-3xl text-heading mt-8 mx-0 mb-3">
                     Yair Jeri
                 </h2>
                 <p class="text-2xl mb-5 text-default">
-                    <span> I'm a </span>
-                    <TypedText client:load />
+                    <span> {t.home.prev} </span>
+                    <TypedText
+                        specialization={t.home.specialization}
+                        client:load
+                    />
                 </p>
                 <p
                     class="text-base md:text-xl leading-[1.6] text-default/80 mb-10 max-w-[500px] mx-auto lg:mx-0"
                 >
-                    Student developer with experience building projects in
-                    frontend and backend development, data analysis, machine
-                    learning, and game development. Skilled in applying
-                    programming and problem-solving to practical projects.
+                    {t.home.about}
                 </p>
 
                 <div class="flex flex-wrap gap-5 w-fit mb-10 mx-auto lg:mx-0">
                     <a
-                        href="#portfolio"
+                        href="#Portfolio"
                         class="py-3 px-6 text-sm md:py-4 md:px-8 md:text-lg font-semibold rounded-4xl border-2 hover:border-transparent duration-300 ease-in bg-accent text-contrast border-accent hover:bg-neutral-900 hover:-translate-y-0.5 hover:text-accent"
-                        >View My Projects</a
                     >
+                        {t.home.viewProjects}
+                    </a>
                     <a
-                        href="#contact"
+                        href="#Contact"
                         class="py-3 px-6 text-sm md:py-4 md:px-8 md:text-lg font-semibold rounded-4xl border-2 duration-300 ease-in bg-transparent text-accent border-accent hover:bg-accent hover:text-contrast hover:-translate-y-0.5"
-                        >Contact Me</a
                     >
+                        {t.home.contact}
+                    </a>
                 </div>
 
                 <div class="flex gap-5 mx-auto w-fit lg:mx-0">

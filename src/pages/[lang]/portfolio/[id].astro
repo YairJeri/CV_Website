@@ -1,31 +1,39 @@
 ---
 import { getCollection, render } from "astro:content";
-import Layout from "../../layouts/layout.astro";
-import Prose from "../../components/prose.astro";
+import Layout from "../../../layouts/layout.astro";
+import Prose from "../../../components/prose.astro";
 import { Image } from "astro:assets";
-import Icon from "../../components/icon.astro";
+import Icon from "../../../components/icon.astro";
+import { availableLangs, getTranslations } from "../../../i18n";
 
 export async function getStaticPaths() {
     const projects = await getCollection("portfolio");
+    const paths = [];
 
-    return projects.map((p) => ({
-        params: { id: p.slug },
-        props: { project: p },
-    }));
+    for (const lang of availableLangs) {
+        for (const p of projects) {
+            paths.push({
+                params: { id: p.slug.split("/").pop(), lang },
+                props: { lang, project: p },
+            });
+        }
+    }
+    return paths;
 }
 
-const { project } = Astro.props;
+const { lang, project } = Astro.props;
 const { data } = project;
 const { title, description, image, github, url, tags } = data;
+const t = await getTranslations(lang);
 
 const { Content } = await render(project);
 ---
 
-<Layout title={title}>
+<Layout title={title} lang={lang} t={t}>
     <main class="relative max-w-5xl mx-auto pt-20 pb-20 md:pt-40 text-default">
         <section class="relative z-10 mb-12 text-center">
             <h1
-                class="text-5xl font-heading text-heading mb-4 tracking-tight font-bold"
+                class="text-5xl font-heading text-accent mb-4 tracking-tight font-bold"
             >
                 {title}
             </h1>
@@ -69,7 +77,7 @@ const { Content } = await render(project);
                         target="_blank"
                         class="inline-flex items-center gap-2 bg-accent/80 hover:bg-accent text-white px-6 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 hover:-translate-y-1 w-fit"
                     >
-                        See on GitHub
+                        {t.portfolio.seeOnGithub}
                         <Icon src="/github.svg" class="w-4 h-4" />
                     </a>
                 )
@@ -81,7 +89,7 @@ const { Content } = await render(project);
                         target="_blank"
                         class="inline-block bg-accent/80 hover:bg-accent text-white px-6 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 hover:-translate-y-1 w-fit"
                     >
-                        Website
+                        {t.portfolio.seeWebsite}
                     </a>
                 )
             }
