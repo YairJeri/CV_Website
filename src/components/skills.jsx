@@ -6,17 +6,17 @@ export default function Skills() {
         {
             category: "Frameworks & Libraries",
             color: "from-cyan-500/20 to-cyan-500/10",
-            items: ["Astro", "Preact/React", "TailwindCSS", "Node.js", "Express", "Angular"],
+            items: ["Astro", "Preact/React", "TailwindCSS", "Node.js", "Express", "Angular", "three.js", "TensorFlow", "Flask", "GraphQL"],
         },
         {
             category: "Databases",
             color: "from-lime-500/20 to-lime-500/10",
-            items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Turso"],
+            items: ["MongoDB", "PostgreSQL", "MySQL", "SQLite", "Turso", "SQL Server"],
         },
         {
             category: "Design",
             color: "from-pink-500/20 to-pink-500/10",
-            items: ["Figma", "UI/UX Principles"],
+            items: ["Figma", "Canva", "UI/UX Principles"],
         },
         {
             category: "Tools & DevOps",
@@ -55,7 +55,7 @@ export default function Skills() {
     let counter = 0;
 
     return (
-        <section id="skills" className="px-10 py-20 relative">
+        <section id="Skills" className="relative">
             <div className="max-w-6xl mx-auto text-center mb-12">
                 <h2 className="text-4xl font-bold mb-3 tracking-tight">Skills</h2>
                 <p className="text-default/80 text-base max-w-2xl mx-auto">
@@ -98,20 +98,26 @@ export default function Skills() {
 function SkillIcon({ name, size = 32 }) {
     const noIcons = ["UI/UX Principles"];
     const simpleIcons = ["Turso"];
-    const mappings = {
+    const nameMappings = {
         "C++": "cplusplus",
         "C#": "csharp",
         "VS Code": "vscode",
         "Preact/React": "react",
         "Node.js": "nodejs",
-
+        "SQL Server": "microsoftsqlserver",
+        "three.js": "threejs",
     }
+    const sufixMappings = {
+        "GraphQL": "plain",
+    }
+
 
     if (noIcons.includes(name)) return;
 
-    const iconName = mappings[name] || name.toLowerCase();
+    const iconName = nameMappings[name] || name.toLowerCase();
+    const sufix = sufixMappings[name] || "original";
 
-    const devIconURL = `https://raw.githubusercontent.com/devicons/devicon/master/icons/${iconName}/${iconName}-original.svg`;
+    const devIconURL = `https://raw.githubusercontent.com/devicons/devicon/master/icons/${iconName}/${iconName}-${sufix}.svg`;
     const simpleIconURL = `https://cdn.simpleicons.org/${iconName}`;
 
     var url = devIconURL

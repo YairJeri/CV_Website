@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/layout.astro";
+import Prose from "../../components/prose.astro";
+import { Image } from "astro:assets";
+import Icon from "../../components/icon.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("portfolio");
+
+    return projects.map((p) => ({
+        params: { id: p.slug },
+        props: { project: p },
+    }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { title, description, image, github, url, tags } = data;
+
+const { Content } = await render(project);
+---
+
+<Layout title={title}>
+    <main class="relative max-w-5xl mx-auto pt-20 pb-20 md:pt-40 text-default">
+        <section class="relative z-10 mb-12 text-center">
+            <h1
+                class="text-5xl font-heading text-heading mb-4 tracking-tight font-bold"
+            >
+                {title}
+            </h1>
+            <p class="text-lg text-default/80 max-w-2xl mx-auto">
+                {description}
+            </p>
+        </section>
+        {
+            image && (
+                <div class="relative mb-12">
+                    <Image
+                        src={image}
+                        alt={title}
+                        class="w-full aspect-video object-cover rounded-3xl shadow-xl border border-white/5 max-h-[500px]"
+                    />
+                    <div class="absolute inset-0 rounded-3xl bg-linear-to-t from-bg/60 via-transparent to-transparent" />
+                </div>
+            )
+        }
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            {
+                tags.map((tag) => (
+                    <span class="text-sm px-3 py-1 rounded-full bg-contrast text-default/90 border border-white/10 hover:bg-accent/30 hover:text-white transition-colors">
+                        {tag}
+                    </span>
+                ))
+            }
+        </div>
+
+        <Prose>
+            <Content />
+        </Prose>
+
+        <div
+            class="text-center mt-16 flex flex-row gap-4 items-center justify-center"
+        >
+            {
+                github && (
+                    <a
+                        href={github}
+                        target="_blank"
+                        class="inline-flex items-center gap-2 bg-accent/80 hover:bg-accent text-white px-6 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 hover:-translate-y-1 w-fit"
+                    >
+                        See on GitHub
+                        <Icon src="/github.svg" class="w-4 h-4" />
+                    </a>
+                )
+            }
+            {
+                url && (
+                    <a
+                        href={url}
+                        target="_blank"
+                        class="inline-block bg-accent/80 hover:bg-accent text-white px-6 py-3 rounded-xl font-medium text-lg shadow-lg transition-all duration-300 hover:-translate-y-1 w-fit"
+                    >
+                        Website
+                    </a>
+                )
+            }
+        </div>
+    </main>
+</Layout>

@@ -1,20 +1,35 @@
 ---
 import Layout from "../layouts/layout.astro";
 import About from "../components/about.astro";
-import Background from "../components/background.astro";
 import Home from "../components/home.astro";
 import Stats from "../components/stats.jsx";
 import Skills from "../components/skills.jsx";
-import Portfolio from "../components/portfolio.astro";
+import Portfolio from "../components/portfolio.jsx";
+
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+
+const projectsRaw = await getCollection("portfolio");
+
+const projects = await Promise.all(
+    projectsRaw.map(async (p) => {
+        const optimizedImage = await getImage({
+            src: p.data.image,
+            format: "webp",
+        });
+
+        return {
+            ...p,
+            optimizedImage,
+        };
+    }),
+);
 ---
 
-<Layout>
-    <div class="lg:ml-80 mb-4">
-        <Background />
-        <Home />
-        <About />
-        <Stats client:visible />
-        <Skills client:visible />
-        <Portfolio />
-    </div>
+<Layout title="Yair Jeri's CV">
+    <Home />
+    <About />
+    <Stats client:visible />
+    <Skills client:visible />
+    <Portfolio projects={projects} client:visible />
 </Layout>

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
 
 @theme {
   --font-default: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -40,16 +41,10 @@
       transform: rotate(3deg);    
     }  
   }
+  
 }
-
 
 :root {
 
   scroll-behavior: smooth;
 }
-
-
-
-
-
-    

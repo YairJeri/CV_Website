@@ -1,6 +1,14 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/navbar.astro";
+import ThreeBackground from "../components/background_three.jsx";
+import Shade from "../components/shade.astro";
+
+export interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -9,10 +17,16 @@ import Navbar from "../components/navbar.astro";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
 	</head>
 	<body class="bg-bg text-default font-default h-full w-full">
+		<ThreeBackground client:load />
 		<Navbar />
-		<slot />
+		<Shade />
+		<div class="lg:ml-72 mb-4">
+			<div class="px-10 max-w-[1300px] flex flex-col mx-auto gap-16">
+				<slot />
+			</div>
+		</div>
 	</body>
 </html>
