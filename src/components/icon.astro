@@ -22,10 +22,8 @@ let svgContent = "";
 try {
     svgContent = fs.readFileSync(svgPath, "utf8");
 
-    // 1️⃣ Quitar atributos de color preexistentes (fill y stroke)
     svgContent = svgContent.replace(/\s(fill|stroke)="[^"]*"/g, "");
 
-    // 2️⃣ Agregar clase de Tailwind al <svg>
     if (className) {
         svgContent = svgContent.replace(
             /<svg([^>]*)>/,

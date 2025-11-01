@@ -5,7 +5,7 @@ import SkillGrowthIcon from "../icons/brain.svg?raw"
 
 export default function Stats() {
     const stats = [
-        { value: 20, label: "Technologies explored", color: "amber-600", icon: TecnologiesIcon },
+        { value: 30, label: "Technologies explored", color: "amber-600", icon: TecnologiesIcon },
         { value: 5, label: "Personal Projects", color: "cyan-500", icon: PersonalProjectsIcon },
         { value: 1000000, label: "Potential", color: "lime-500", icon: SkillGrowthIcon, infinite: true },
 
@@ -76,7 +76,6 @@ export default function Stats() {
 
                             requestAnimationFrame(animate);
                         } else {
-                            // Animación normal
                             function animate(time) {
                                 const elapsed = time - startTime;
                                 const progress = Math.min(elapsed / duration, 1);
@@ -104,7 +103,7 @@ export default function Stats() {
             id="stats"
             className="relative flex items-center w-full"
         >
-            <div className="px-10 w-full">
+            <div className="w-full">
                 <div className="content-center justify-center">
                     <div className="flex flex-wrap justify-center gap-6">
                         {stats.map((stat, i) => (
