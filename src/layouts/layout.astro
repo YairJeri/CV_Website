@@ -3,12 +3,15 @@ import "../styles/global.css";
 import Navbar from "../components/navbar.astro";
 import ThreeBackground from "../components/background_three.jsx";
 import Shade from "../components/shade.astro";
+import type { Translations } from "../i18n/en";
 
 export interface Props {
 	title?: string;
+	lang: string;
+	t: Translations;
 }
 
-const { title } = Astro.props;
+const { lang, t, title } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,7 +24,7 @@ const { title } = Astro.props;
 	</head>
 	<body class="bg-bg text-default font-default h-full w-full">
 		<ThreeBackground client:load />
-		<Navbar />
+		<Navbar lang={lang} t={t} />
 		<Shade />
 		<div class="lg:ml-72 mb-4">
 			<div class="px-10 max-w-[1300px] flex flex-col mx-auto gap-16">

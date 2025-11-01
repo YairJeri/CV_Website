@@ -1,16 +1,16 @@
 import { useState, useEffect } from "preact/hooks";
 
-export default function TypedText() {
-    const roles = [
-        "Frontend Developer.",
-        "Backend Developer.",
-        "Python Developer.",
-        "Data Analyst.",
-        "Data Scientist.",
-        "AIEngineer.",
-        "Game Developer.",
-        "Network Engineer.",
-    ];
+export default function TypedText({ specialization }) {
+    // const roles = [
+    //     "Frontend Developer.",
+    //     "Backend Developer.",
+    //     "Python Developer.",
+    //     "Data Analyst.",
+    //     "Data Scientist.",
+    //     "AI Engineer.",
+    //     "Game Developer.",
+    //     "Network Engineer.",
+    // ];
 
     const typingSpeed = 100;
     const deletingSpeed = 70;
@@ -25,7 +25,7 @@ export default function TypedText() {
         let timeout;
 
         function type() {
-            const currentRole = roles[roleIndex];
+            const currentRole = specialization[roleIndex];
 
             if (!isDeleting) {
                 setText(currentRole.slice(0, charIndex + 1));
@@ -38,7 +38,7 @@ export default function TypedText() {
                 setText(currentRole.slice(0, charIndex - 1));
                 if (charIndex - 1 === 0) {
                     setIsDeleting(false);
-                    setRoleIndex((roleIndex + 1) % roles.length);
+                    setRoleIndex((roleIndex + 1) % specialization.length);
                     timeout = setTimeout(() => setCharIndex(0), typingSpeed);
                 } else {
                     timeout = setTimeout(() => setCharIndex(charIndex - 1), deletingSpeed);

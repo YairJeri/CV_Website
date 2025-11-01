@@ -1,11 +1,11 @@
 ---
 title: "SkyRoutes"
 description: "Web application that allows users to find the shortest flights between an origin and a destination. The app also provides the flexibility to add stopovers or avoid specific airports, making it easier to plan efficient and personalized flight routes."
-image: "SkyRoutes.png"
+image: "../assets/SkyRoutes.png"
 github: "https://github.com/YairJeri/SkyRoutes"
 url: "https://sky-routes-23rc88kl6-etsenias-projects.vercel.app"
 tags: ["Astro", "SQL", "Web Development"]
-
+lang: "en"
 ---
 
 SkyRoutes is a web application that helps users find the shortest flights between an origin and a destination, with options to add stopovers or avoid specific airports. The app calculates optimal routes using the A* algorithm and provides a clean, interactive interface.
@@ -18,8 +18,8 @@ SkyRoutes is a web application that helps users find the shortest flights betwee
 - **User-Friendly Interface:** Responsive UI built with Astro and Preact.
 
 ## Technologies
-- Astro (static site generator)
-- Preact (UI library)
+- Astro
+- Preact
 - Dexie (client-side database)
 - Leaflet (interactive maps)
 - A* algorithm (pathfinding)

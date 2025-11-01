@@ -1,0 +1,56 @@
+---
+const { languages, lang } = Astro.props;
+const currentLang =
+    languages.find(
+        (langObj: { code: string; label: string }) => langObj.code === lang,
+    )?.label ?? "Language";
+---
+
+<div class="relative w-full mx-auto h-12">
+    <div
+        class="absolute w-full bg-surface/70 border border-default/20 rounded-3xl overflow-hidden hover:border-accent/60 backdrop-blur-md"
+    >
+        <input type="checkbox" id="toggle-lang" class="peer hidden" />
+
+        <label
+            for="toggle-lang"
+            class="flex justify-between items-center px-5 py-3 cursor-pointer select-none text-sm font-medium transition-all duration-300"
+        >
+            <span>{currentLang}</span>
+            <svg
+                class="w-4 h-4 text-default/70 transition-transform duration-300 peer-checked:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 9l6 6 6-6"></path>
+            </svg>
+        </label>
+        <div
+            class="top-0 left-0 w-full mt-0 overflow-hidden max-h-0 peer-checked:max-h-64 peer-checked:border-t border-default/20 bg-surface/90 backdrop-blur-md shadow-lg transition-all duration-500 origin-top"
+        >
+            <div class="flex flex-col">
+                {
+                    languages.map(
+                        (langOpt: { code: string; label: string }) => (
+                            <a
+                                href={`/${langOpt.code}/`}
+                                class={`block px-5 py-3 text-sm text-default hover:bg-accent/20 transition-all duration-200 ${
+                                    langOpt.code === lang
+                                        ? "text-accent font-semibold"
+                                        : ""
+                                }`}
+                            >
+                                {langOpt.label}
+                            </a>
+                        ),
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</div>

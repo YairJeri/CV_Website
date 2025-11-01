@@ -10,7 +10,7 @@ It is built with **Astro**, **Preact**, and **TailwindCSS**, focusing on speed, 
 - **[Astro](https://astro.build/)** — Static site generator optimized for fast performance  
 - **[Preact](https://preactjs.com/)** — Lightweight alternative to React for interactive UI components  
 - **[TailwindCSS](https://tailwindcss.com/)** — Utility-first CSS framework for responsive design
-- **Deployment:** ...to be added
+- **Deployment (Vercel)** — https://cv-website-ruby.vercel.app/
 
 ---
 

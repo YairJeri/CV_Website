@@ -3,11 +3,11 @@ import TecnologiesIcon from "../icons/tecnology.svg?raw"
 import PersonalProjectsIcon from "../icons/project.svg?raw"
 import SkillGrowthIcon from "../icons/brain.svg?raw"
 
-export default function Stats() {
+export default function Stats({ t }) {
     const stats = [
-        { value: 30, label: "Technologies explored", color: "amber-600", icon: TecnologiesIcon },
-        { value: 5, label: "Personal Projects", color: "cyan-500", icon: PersonalProjectsIcon },
-        { value: 1000000, label: "Potential", color: "lime-500", icon: SkillGrowthIcon, infinite: true },
+        { value: 30, label: t.stats.technologies, color: "amber-600", icon: TecnologiesIcon },
+        { value: 5, label: t.stats.personalProjects, color: "cyan-500", icon: PersonalProjectsIcon },
+        { value: 1000000, label: t.stats.potential, color: "lime-500", icon: SkillGrowthIcon, infinite: true },
 
     ];
     const colorClasses = {
@@ -128,7 +128,7 @@ export default function Stats() {
                                         0
                                     </span>
                                 </span>
-                                <p className="text-default text-base m-0 font-medium font-heading opacity-80">
+                                <p className="text-default text-base m-0 pt-4 font-medium font-heading opacity-80">
                                     {stat.label}
                                 </p>
                             </div>
