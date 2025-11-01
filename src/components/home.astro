@@ -1,5 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import Icon from "./icon.astro";
+import TypedText from "../components/typedtext.jsx";
+
+import photo from "../assets/images/photo.jpg";
 
 const socialLinks = [
     { href: "#", label: "Github", icon: "/github.svg" },
@@ -9,11 +13,11 @@ const socialLinks = [
 
 <section
     id="Home"
-    class="min-h-screen relative overflow-hidden flex items-center"
+    class="min-h-screen relative overflow-hidden flex items-center w-full"
 >
-    <div class="relative w-full z-10">
+    <div class="relative w-full z-10 mt-32">
         <div class="flex flex-row items-center justify-around w-full flex-wrap">
-            <div class="hero-text text-center lg:text-left">
+            <div class="text-center lg:text-left">
                 <h1
                     class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4 text-heading"
                 >
@@ -28,12 +32,7 @@ const socialLinks = [
                 </h2>
                 <p class="text-2xl mb-5 text-default">
                     <span> I'm a </span>
-                    <span id="typed-container" class="border-accent pb-0.5"
-                        ><span
-                            id="typed"
-                            class="text-accent font-semibold border-accent whitespace-nowrap overflow-hidden border-r-2 animate-blink"
-                        ></span>
-                    </span>
+                    <TypedText client:load />
                 </p>
                 <p
                     class="text-base md:text-xl leading-[1.6] text-default/80 mb-10 max-w-[500px] mx-auto lg:mx-0"
@@ -76,13 +75,20 @@ const socialLinks = [
                     }
                 </div>
             </div>
-            <div class="flex items-center justify-center">
-                <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            <div
+                class="flex items-center justify-center lg:min-w-80 lg:max-w-[600px] lg:w-1/3 lg:aspect-square"
+            >
+                <div
+                    class="relative w-72 h-72 md:w-80 md:h-80 lg:w-full lg:h-full"
+                >
                     <div
                         class="absolute inset-4 bg-accent/10 rounded-4xl z-0 overflow-hidden"
                     >
-                        <img
-                            src="/photo.jpg"
+                        <Image
+                            src={photo}
+                            alt="Photo of me"
+                            width="720"
+                            height="720"
                             class="relative w-full h-full object-cover rounded-4xl z-10 transform scale-120"
                         />
                     </div>
@@ -91,53 +97,3 @@ const socialLinks = [
         </div>
     </div>
 </section>
-
-<script type="module">
-    const el = document.getElementById("typed");
-    const container = document.getElementById("typed-container");
-    const roles = [
-        "Frontend Developer.",
-        "Backend Developer.",
-        "Python Developer.",
-        "Data Analyst.",
-        "Data Scientist.",
-        "Machine Learning Engineer.",
-        "Game Developer.",
-        "Network Engineer.",
-    ];
-
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
-    const pauseTime = 1000;
-
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    async function typeWriter() {
-        let index = 0;
-
-        while (true) {
-            const text = roles[index];
-
-            await wait(pauseTime);
-            for (let i = 1; i <= text.length; i++) {
-                el.textContent = text.slice(0, i);
-                container.classList.add("border-b-2");
-                await wait(typingSpeed);
-            }
-
-            await wait(pauseTime);
-
-            for (let i = text.length; i > 0; i--) {
-                el.textContent = text.slice(0, i - 1) || "\u200B";
-                await wait(deletingSpeed);
-            }
-
-            el.textContent = "\u200B";
-            container.classList.remove("border-b-2");
-
-            index = (index + 1) % roles.length;
-        }
-    }
-
-    typeWriter();
-</script>
