@@ -1,0 +1,154 @@
+---
+import type { Resume } from "../types/resume";
+
+export interface Props {
+    resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<div class="border-t-2 py-4">
+    <h1 class="text-2xl sm:text-3xl font-bold leading-10 m-0 text-center mb-6">
+        {resume.name}
+    </h1>
+    <h2
+        class="text-[11px] sm:text-lg leading-[1.2] text-default/80 text-center w-full sm:w-2/3 mx-auto flex flex-wrap justify-center gap-x-2"
+    >
+        {
+            resume.quickInformation.map((info, i) => {
+                const urlPattern = /(https?:\/\/[^\s|]+)/g;
+                const emailPattern =
+                    /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+
+                const parts = info
+                    .split(emailPattern)
+                    .flatMap((part) =>
+                        emailPattern.test(part)
+                            ? [`mailto:${part}`]
+                            : part.split(urlPattern).flat(),
+                    );
+
+                return (
+                    <span class="whitespace-nowrap flex gap-1">
+                        {parts.map((part, j) => {
+                            if (part.startsWith("mailto:")) {
+                                const email = part.replace("mailto:", "");
+                                return (
+                                    <a
+                                        href={part}
+                                        class="underline text-blue-600"
+                                    >
+                                        {email}
+                                    </a>
+                                );
+                            } else if (part.startsWith("http")) {
+                                return (
+                                    <a
+                                        href={part}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="underline text-blue-600"
+                                    >
+                                        {part}
+                                    </a>
+                                );
+                            } else {
+                                return part;
+                            }
+                        })}
+                        {i < resume.quickInformation.length - 1 && (
+                            <span>|</span>
+                        )}
+                    </span>
+                );
+            })
+        }
+    </h2>
+</div>
+
+<div class="border-t-2 pb-6">
+    <h3 class="text-xl sm:text-2xl font-bold leading-10 m-0">
+        {resume.professionalProfile.title}
+    </h3>
+    <p class="text-default/80 text-base mx-auto">
+        {resume.professionalProfile.content.join(" ")}
+    </p>
+</div>
+
+<div class="border-t-2 pb-6">
+    <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2">
+        {resume.skills.title}
+    </h3>
+    <div class="flex flex-wrap gap-6 mt-2">
+        {
+            resume.skills.content.map((skillCategory) => {
+                const categoryNames = Object.keys(skillCategory);
+                return (
+                    <ol class="space-y-2">
+                        {categoryNames.map((categoryName) => (
+                            <li class="text-sm text-heading">
+                                <h4 class="font-semibold text-lg text-heading">
+                                    {categoryName}
+                                </h4>
+                                <ul class="ml-6 list-disc space-y-1">
+                                    {skillCategory[categoryName].map((item) => (
+                                        <li class="text-base text-gray-500">
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        ))}
+                    </ol>
+                );
+            })
+        }
+    </div>
+</div>
+
+<div class="border-t-2 pb-6">
+    <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2">
+        {resume.education.title}
+    </h3>
+    <p class="text-base block">{resume.education.content}</p>
+</div>
+
+<div class="border-t-2 pb-6">
+    <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2">
+        {resume.languages.title}
+    </h3>
+    <div class="text-base">
+        <ul class="ml-6 list-disc items-center">
+            {
+                resume.languages.content.map((lang) => (
+                    <li>
+                        <div class="flex flex-row gap-2">
+                            <p class="font-semibold text-lg">
+                                {lang.language}:
+                            </p>
+                            <p class="block font-normal text-heading text-base">
+                                {lang.level}
+                            </p>
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<div class="border-t-2 pb-6">
+    <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2">
+        {resume.additionalInfo.title}
+    </h3>
+    <div class="text-base">
+        {
+            resume.additionalInfo.content.map((info) => (
+                <ul class="ml-6 flex flex-row list-disc gap-2 items-center">
+                    <li class="font-normal text-base">{info}</li>
+                </ul>
+            ))
+        }
+    </div>
+</div>

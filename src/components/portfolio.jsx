@@ -3,13 +3,17 @@ import { useState } from "preact/hooks";
 export default function Portfolio({ projects, lang, t }) {
     const [selectedTag, setSelectedTag] = useState("All");
 
-
     const allTags = Array.from(new Set(projects.flatMap(p => p.data.tags)));
 
     const filteredProjects =
         selectedTag === "All"
             ? projects
             : projects.filter(p => p.data.tags.includes(selectedTag));
+
+    const orderedProjects = filteredProjects.sort((a, b) =>
+        a.data.title.localeCompare(b.data.title)
+    );
+
 
     return (
         <div className="max-w-7xl mx-auto" id="Portfolio">
@@ -35,7 +39,7 @@ export default function Portfolio({ projects, lang, t }) {
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
-                {filteredProjects.map(project => (
+                {orderedProjects.map(project => (
                     <a href={"/" + lang + "/portfolio/" + project.slug.split("/").pop()} className="block" key={project.data.title}>
                         <div className="bg-surface rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col w-full max-w-[400px] min-w-[280px] cursor-pointer hover:scale-105 hover:bg-accent/10 hover:text-accent">
                             <img src={project.optimizedImage?.src ?? project.data.image} alt={project.data.title} className="w-full h-48 object-cover" />

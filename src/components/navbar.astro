@@ -28,7 +28,11 @@ const navItems = [
 ];
 
 const socialLinks = [
-    { href: "#", label: "Github", icon: "/github.svg" },
+    {
+        href: "https://github.com/YairJeri",
+        label: "Github",
+        icon: "/github.svg",
+    },
     { href: "#", label: "Linkedin", icon: "/linkedin.svg" },
 ];
 
@@ -79,6 +83,7 @@ const languages = getLanguageNames();
                 socialLinks.map((item, index) => (
                     <a
                         href={item.href}
+                        target="_blank"
                         class="group inline-flex items-center 
                         justify-center w-12 h-12 my-0 mx-0.5 text-lg
                          text-default rounded-4xl bg-default/10 duration-300

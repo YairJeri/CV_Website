@@ -2,11 +2,10 @@ import { useEffect, useRef } from 'preact/hooks';
 import * as THREE from 'three';
 
 export default function ThreeBackground() {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         if (!containerRef.current) return;
-
         const container = containerRef.current;
 
         const scene = new THREE.Scene();
@@ -22,7 +21,7 @@ export default function ThreeBackground() {
         renderer.setSize(window.innerWidth, window.innerHeight);
         container.appendChild(renderer.domElement);
 
-        const geometries = [
+        const geometries: THREE.BufferGeometry[] = [
             new THREE.SphereGeometry(0.3, 16, 16),
             new THREE.IcosahedronGeometry(0.35, 0),
             new THREE.TorusGeometry(0.2, 0.08, 8, 16),
@@ -30,7 +29,7 @@ export default function ThreeBackground() {
 
         const colors = [0x6366f1, 0x818cf8, 0x4f46e5];
 
-        const objects = [];
+        const objects: THREE.Mesh[] = [];
         const total = 30;
 
         for (let i = 0; i < total; i++) {
@@ -57,7 +56,7 @@ export default function ThreeBackground() {
             scene.add(mesh);
         }
 
-        let animationId;
+        let animationId: number;
 
         const animate = () => {
             animationId = requestAnimationFrame(animate);
@@ -85,7 +84,9 @@ export default function ThreeBackground() {
             window.removeEventListener('resize', handleResize);
             renderer.dispose();
             scene.clear();
-            container.removeChild(renderer.domElement);
+            if (container.contains(renderer.domElement)) {
+                container.removeChild(renderer.domElement);
+            }
         };
     }, []);
 

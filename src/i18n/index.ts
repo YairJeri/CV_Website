@@ -15,6 +15,7 @@ export function getLanguageNames(): { code: string; label: string }[] {
     return availableLangs.map((lang) => ({
         code: lang,
         label: languages[lang].name,
+        flag: languages[lang].flag,
     }));
 }
 

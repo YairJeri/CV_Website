@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/navbar.astro";
-import ThreeBackground from "../components/background_three.jsx";
+import ThreeBackground from "../components/background_three.js";
 import Shade from "../components/shade.astro";
 import type { Translations } from "../i18n/en";
 
@@ -20,6 +20,10 @@ const { lang, t, title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+		/>
 		<title>{title}</title>
 	</head>
 	<body class="bg-bg text-default font-default h-full w-full">

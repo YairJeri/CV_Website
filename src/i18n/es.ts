@@ -3,11 +3,12 @@ import type { Translations } from "./en";
 
 const es: Translations = {
     name: "Español",
+    flag: "fi-es",
     home: {
         title: ["Mi", "Portafolio"],
         prev: "Soy un",
         specialization: ["Desarrollador Frontend", "Desarrollador Backend", "Desarrollador Python", "Analista de Datos", "Científico de Datos", "Ingeniero de IA", "Desarrollador de Juegos", "Ingeniero de Redes"],
-        about: "Estudiante y desarrollador con experiencia en desarrollo frontend y backend, análisis de datos, aprendizaje automático y desarrollo de videojuegos. Competente en aplicar programación y resolución de problemas a proyectos del mundo real.",
+        about: "Desarrollador full stack con experiencia en desarrollo frontend y backend, análisis de datos, aprendizaje automático y desarrollo de videojuegos. Competente en aplicar programación y resolución de problemas a proyectos del mundo real.",
         viewProjects: "Vé mis Proyectos",
         contact: "Contáctame",
     },
@@ -20,20 +21,11 @@ const es: Translations = {
     },
     about: {
         title: "Acerca de mí",
-        header: "Desarrollador con experiencia en proyectos de frontend y backend, análisis de datos, aprendizaje automático y desarrollo de videojuegos.",
+        header: "Desarrollador full stack con experiencia en proyectos de frontend y backend, análisis de datos, aprendizaje automático y desarrollo de videojuegos.",
         description: [
             "Me gusta crear proyectos con diversas tecnologías, desarrollando habilidades tanto en frontend como en backend. También aplico técnicas básicas de análisis de datos y aprendizaje automático en mis proyectos.",
             "Me enfoco en resolver problemas y construir soluciones prácticas, usando la programación como herramienta para aprender y ser creativo.",
             "Mi objetivo es seguir mejorando mis habilidades y crear proyectos significativos en desarrollo de software y tecnologías orientadas a datos."],
-        education: [
-            { label: "Educación", value: "Ciencias de la Computación" }
-        ],
-        experience: [
-            { label: "Nivel de Experiencia", value: "Intermedio" }
-        ],
-        languages: [
-            { label: "Idiomas", value: "Español, Inglés" }
-        ],
     },
     stats: {
         technologies: "Tecnologías exploradas",
