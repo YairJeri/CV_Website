@@ -1,16 +1,6 @@
 import { useState, useEffect } from "preact/hooks";
 
 export default function TypedText({ specialization }) {
-    // const roles = [
-    //     "Frontend Developer.",
-    //     "Backend Developer.",
-    //     "Python Developer.",
-    //     "Data Analyst.",
-    //     "Data Scientist.",
-    //     "AI Engineer.",
-    //     "Game Developer.",
-    //     "Network Engineer.",
-    // ];
 
     const typingSpeed = 100;
     const deletingSpeed = 70;

@@ -1,0 +1,42 @@
+---
+import type { Resume } from "../types/resume";
+
+export interface Props {
+    resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<div class="flex flex-row gap-6">
+    <div class="pb-6 max-w-1/2">
+        <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2 text-gray-600">
+            {resume.education.title}
+        </h3>
+        <p class="text-base block">{resume.education.content}</p>
+    </div>
+
+    <div class="pb-6 max-w-1/2">
+        <h3 class="text-xl sm:text-2xl font-bold leading-10 mt-2 text-gray-600">
+            {resume.languages.title}
+        </h3>
+        <div class="text-base">
+            <ul class="items-center">
+                {
+                    resume.languages.content.map((lang) => (
+                        <li>
+                            <div class="flex flex-row gap-2">
+                                <p class="font-semibold text-lg">
+                                    {lang.language}:
+                                </p>
+                                <p class="block font-normal text-heading text-base">
+                                    {lang.level}
+                                </p>
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,11 @@ import photo from "../assets/images/photo.jpg";
 import type { Translations } from "../i18n/en";
 
 const socialLinks = [
-    { href: "#", label: "Github", icon: "/github.svg" },
+    {
+        href: "https://github.com/YairJeri",
+        label: "Github",
+        icon: "/github.svg",
+    },
     { href: "#", label: "Linkedin", icon: "/linkedin.svg" },
 ];
 
@@ -71,6 +75,7 @@ const { t } = Astro.props;
                         socialLinks.map((item, index) => (
                             <a
                                 href={item.href}
+                                target="_blank"
                                 class="group flex items-center
                                 justify-center w-12 h-12 my-0 mx-0.5 text-lg
                                  text-default/60 rounded-4xl bg-surface duration-300

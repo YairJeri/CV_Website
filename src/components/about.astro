@@ -20,7 +20,7 @@ const { t } = Astro.props;
         </h2>
     </div>
 
-    <div class="mb-10">
+    <div class="">
         <p class="text-lg leading-7 text-default/80 mb-6">
             {t.about.description[0]}
         </p>
@@ -30,54 +30,5 @@ const { t } = Astro.props;
         <p class="text-lg leading-7 text-default/80 mb-0">
             {t.about.description[2]}
         </p>
-    </div>
-
-    <div
-        class="gap-6 mb-10 p-8 bg-surface rounded-3xl shadow-lg shadow-[#00000040]"
-    >
-        <div
-            class="grid grid-cols-1 text-center sm:text-start sm:grid-cols-2 gap-4 sm:gap-8"
-        >
-            <div class="">
-                <span class="block text-sm text-default/50 mb-2 font-medium">
-                    {t.about.education[0].label}
-                </span>
-                <span class="block font-semibold text-heading text-lg">
-                    {t.about.education[0].value}
-                </span>
-            </div>
-            <div class="">
-                <span class="block text-sm text-default/50 mb-2 font-medium">
-                    {t.about.experience[0].label}
-                </span>
-                <span class="block font-semibold text-heading text-lg">
-                    {t.about.experience[0].value}
-                </span>
-            </div>
-            <div class="">
-                <span class="block text-sm text-default/50 mb-2 font-medium">
-                    {t.about.languages[0].label}
-                </span>
-                <span class="block font-semibold text-heading text-lg">
-                    {t.about.languages[0].value}
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-10"></div>
-
-    <div class="flex gap-4 flex-wrap justify-center sm:justify-start">
-        <div class="relative group">
-            <span
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-full animate-ping group-hover:hidden group-hover:animate-none rounded-xl bg-accent opacity-75"
-            ></span>
-            <a
-                href="#"
-                class="relative py-3.5 px-8 rounded-xl font-semibold duration-300 inline-flex items-center gap-2 border-2 border-transparent hover:border-accent bg-accent text-contrast hover:bg-neutral-800 hover:text-accent hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/40"
-            >
-                Download CV
-            </a>
-        </div>
     </div>
 </section>

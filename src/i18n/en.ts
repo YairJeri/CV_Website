@@ -1,6 +1,7 @@
 // src/i18n/en.ts
 export type Translations = {
     name: string;
+    flag: string;
     home: {
         title: [string, string];
         prev: string;
@@ -20,9 +21,6 @@ export type Translations = {
         title: string;
         header: string;
         description: [string, string, string];
-        education: Array<{ label: string; value: string }>;
-        experience: Array<{ label: string; value: string }>;
-        languages: Array<{ label: string; value: string }>;
     };
     stats: {
         technologies: string;
@@ -44,11 +42,12 @@ export type Translations = {
 
 const en: Translations = {
     name: "English",
+    flag: "fi-us",
     home: {
         title: ["My", "Portfolio"],
         prev: "I'm a",
         specialization: ["Frontend Developer", "Backend Developer", "Python Developer", "Data Analyst", "Data Scientist", "AI Engineer", "Game Developer", "Network Engineer"],
-        about: "Student and developer with experience in frontend and backend development, data analysis, machine learning, and game development. Skilled at applying programming and problem-solving to real-world projects.",
+        about: "Full stack developer with experience in frontend and backend development, data analysis, machine learning, and game development. Skilled at applying programming and problem-solving to real-world projects.",
         viewProjects: "View My Projects",
         contact: "Contact Me",
     },
@@ -61,21 +60,12 @@ const en: Translations = {
     },
     about: {
         title: "About Me",
-        header: "Student developer building projects in frontend & backend development, data analysis, machine learning, and game development.",
+        header: "Full stack building projects in frontend & backend development, data analysis, machine learning, and game development.",
         description: [
-            "Me gusta trabajar con diversas tecnologías, desarrollando habilidades tanto en frontend como en backend. También aplico técnicas básicas de análisis de datos y aprendizaje automático en mis proyectos.",
-            "Me concentro en resolver problemas y construir soluciones prácticas, utilizando la programación como herramienta de aprendizaje y creatividad.",
-            "Mi objetivo es seguir perfeccionando mis habilidades y desarrollar proyectos significativos en desarrollo de software y tecnologías orientadas a datos."
-        ],
-        education: [
-            { label: "Education", value: "Computer Science" }
-        ],
-        experience: [
-            { label: "Experience Level", value: "Intermediate" }
-        ],
-        languages: [
-            { label: "Languages", value: "Spanish, English" }
-        ],
+            "I enjoy working with diverse technologies, developing skills in both frontend and backend areas. I also apply basic data analysis and machine learning techniques in my projects.",
+            "I focus on solving problems and building practical solutions, using programming as a tool for learning and creativity.",
+            "My goal is to keep improving my skills and to develop meaningful projects in software development and data-oriented technologies."
+        ]
     },
     stats: {
         technologies: "Technologies explored",
