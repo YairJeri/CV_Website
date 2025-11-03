@@ -37,15 +37,36 @@ const projectsTemp = await Promise.all(
     }),
 );
 
+const socialLinks = [
+    {
+        href: "https://github.com/YairJeri",
+        label: "Github",
+        icon: "github",
+    },
+    {
+        href: "https://www.linkedin.com/in/yair-jeri-37113436b",
+        label: "Linkedin",
+        icon: "linkedin",
+    },
+];
+
+const email = "Guidoyair@hotmail.com";
+
 const resume = resumeCollection.find((r) => r.data.lang === lang);
 const projects = projectsTemp.filter((p) => p.data.lang === lang);
 ---
 
-<Layout title="Yair Jeri's CV" lang={lang} t={t}>
-    <Home t={t} />
+<Layout
+    title="Yair Jeri's CV"
+    lang={lang}
+    t={t}
+    socialLinks={socialLinks}
+    email={email}
+>
+    <Home t={t} socialLinks={socialLinks} />
     <About t={t} />
     <Resume t={t} resume={resume!.data} lang={lang} isComplete={false} />
     <Stats t={t} />
     <TechSkills t={t} />
     <Portfolio projects={projects} lang={lang} t={t} client:visible />
-</Layout>v
+</Layout>

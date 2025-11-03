@@ -48,6 +48,13 @@ const es: Translations = {
         seeOnGithub: "Ver en GitHub",
         seeWebsite: "Sitio web",
     },
+    contact: {
+        title: "Contáctame",
+        text: "¿Tienes un proyecto, una idea o simplemente quieres saludar? ¡No dudes en escribirme!",
+        email: "Email",
+        github: "GitHub",
+        linkedin: "LinkedIn"
+    }
 };
 
 export default es;
