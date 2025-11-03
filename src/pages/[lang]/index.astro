@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/layout.astro";
+import About from "../../components/about.astro";
+import Home from "../../components/home.astro";
+import Resume from "../../components/resume.astro";
+import Stats from "../../components/stats.astro";
+import TechSkills from "../../components/tech_skills.astro";
+import Portfolio from "../../components/portfolio.jsx";
+
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import { getTranslations, availableLangs } from "../../i18n";
+
+export async function getStaticPaths() {
+    return availableLangs.map((lang) => ({
+        params: { lang },
+    }));
+}
+
+const { lang } = Astro.params;
+const t = await getTranslations(lang);
+
+const projectsRaw = await getCollection("portfolio");
+const resumeCollection = await getCollection("resume");
+
+const projectsTemp = await Promise.all(
+    projectsRaw.map(async (p) => {
+        const optimizedImage = await getImage({
+            src: p.data.image,
+            format: "webp",
+        });
+
+        return {
+            ...p,
+            optimizedImage,
+        };
+    }),
+);
+
+const socialLinks = [
+    {
+        href: "https://github.com/YairJeri",
+        label: "Github",
+        icon: "github",
+    },
+    {
+        href: "https://www.linkedin.com/in/yair-jeri-37113436b",
+        label: "Linkedin",
+        icon: "linkedin",
+    },
+];
+
+const email = "Guidoyair@hotmail.com";
+
+const resume = resumeCollection.find((r) => r.data.lang === lang);
+const projects = projectsTemp.filter((p) => p.data.lang === lang);
+---
+
+<Layout
+    title="Yair Jeri's CV"
+    lang={lang}
+    t={t}
+    socialLinks={socialLinks}
+    email={email}
+>
+    <Home t={t} socialLinks={socialLinks} />
+    <About t={t} />
+    <Resume t={t} resume={resume!.data} lang={lang} isComplete={false} />
+    <Stats t={t} />
+    <TechSkills t={t} />
+    <Portfolio projects={projects} lang={lang} t={t} client:visible />
+</Layout>
