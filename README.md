@@ -43,7 +43,7 @@ npm run dev
 Open the website in your browser:
 
 ```bash
-http://localhost:3000
+http://localhost:4321
 ```
 
 ---
