@@ -1,25 +1,17 @@
 ---
 import { Image } from "astro:assets";
-import Icon from "./icon.astro";
+import { Icon } from "astro-icon/components";
 import TypedText from "../components/typedtext.jsx";
 
 import photo from "../assets/images/photo.jpg";
 import type { Translations } from "../i18n/en";
 
-const socialLinks = [
-    {
-        href: "https://github.com/YairJeri",
-        label: "Github",
-        icon: "/github.svg",
-    },
-    { href: "#", label: "Linkedin", icon: "/linkedin.svg" },
-];
-
 export interface Props {
     t: Translations;
+    socialLinks: Array<{ href: string; label: string; icon: string }>;
 }
 
-const { t } = Astro.props;
+const { t, socialLinks } = Astro.props;
 ---
 
 <section
@@ -70,21 +62,18 @@ const { t } = Astro.props;
                     </a>
                 </div>
 
-                <div class="flex gap-5 mx-auto w-fit lg:mx-0">
+                <div class="flex gap-5 w-fit lg:mx-0 text-center">
                     {
                         socialLinks.map((item, index) => (
                             <a
                                 href={item.href}
                                 target="_blank"
-                                class="group flex items-center
-                                justify-center w-12 h-12 my-0 mx-0.5 text-lg
-                                 text-default/60 rounded-4xl bg-surface duration-300
-                                 hover:bg-accent hover:-translate-y-1"
+                                class="group inline-flex items-center 
+                        justify-center w-12 h-12 my-0 mx-0.5 text-lg
+                         text-default rounded-4xl bg-default/10 duration-300
+                         hover:text-contrast hover:bg-accent"
                             >
-                                <Icon
-                                    src={item.icon}
-                                    class="w-8 h-8 group-hover:text-contrast"
-                                />
+                                <Icon name={item.icon} size={32} />
                             </a>
                         ))
                     }

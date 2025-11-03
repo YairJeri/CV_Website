@@ -36,7 +36,13 @@ export type Translations = {
         title: string;
         seeOnGithub: string;
         seeWebsite: string;
-
+    };
+    contact: {
+        title: string;
+        text: string;
+        email: string;
+        github: string;
+        linkedin: string;
     };
 };
 
@@ -88,6 +94,13 @@ const en: Translations = {
         seeOnGithub: "See on GitHub",
         seeWebsite: "Website",
     },
+    contact: {
+        title: "Contact Me",
+        text: "If you have a project, an idea or simply want to say hello, don't hesitate to contact me!",
+        email: "Email",
+        github: "GitHub",
+        linkedin: "LinkedIn"
+    }
 };
 
 

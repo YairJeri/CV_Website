@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Translations } from "../i18n/en";
+
+export interface Props {
+    t: Translations;
+    email: string;
+    linkedin: string;
+    github: string;
+}
+
+const { t, email, linkedin, github } = Astro.props;
+---
+
+<footer
+    id="contact"
+    class="pt-16 pb-8 bg-surface rounded-t-4xl text-default text-center"
+>
+    <div class="max-w-3xl mx-auto px-6">
+        <h2 class="text-4xl font-bold font-heading text-heading mb-6">
+            {t.contact.title}
+        </h2>
+        <p class="text-lg mb-10 opacity-80">{t.contact.text}</p>
+
+        <div
+            class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12"
+        >
+            <a
+                href={`mailto:${email}`}
+                class="flex items-center gap-2 hover:text-accent hover:drop-shadow-[0_0_6px_var(--color-accent)] hover:-translate-y-1 transition-all duration-300"
+            >
+                <Icon name="email" size={28} />
+                {email}
+            </a>
+
+            <a
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 hover:text-accent hover:drop-shadow-[0_0_6px_var(--color-accent)] hover:-translate-y-1 transition-all duration-300"
+            >
+                <Icon name="linkedin" size={28} />
+                LinkedIn
+            </a>
+
+            <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 hover:text-accent hover:drop-shadow-[0_0_6px_var(--color-accent)] hover:-translate-y-1 transition-all duration-300"
+            >
+                <Icon name="github" size={28} />
+                GitHub
+            </a>
+        </div>
+
+        <div class="border-t border-gray-700 pt-6 text-sm text-gray-400">
+            © {new Date().getFullYear()} Yair Jeri — Todos los derechos reservados.
+        </div>
+    </div>
+</footer>

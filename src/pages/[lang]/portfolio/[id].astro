@@ -26,11 +26,25 @@ const { data } = project;
 const { title, description, image, github, url, tags } = data;
 const t = await getTranslations(lang);
 
+const socialLinks = [
+    {
+        href: "https://github.com/YairJeri",
+        label: "Github",
+        icon: "github",
+    },
+    {
+        href: "https://www.linkedin.com/in/yair-jeri-37113436b",
+        label: "Linkedin",
+        icon: "linkedin",
+    },
+];
+const email = "Guidoyair@hotmail.com";
+
 const { Content } = await render(project);
 ---
 
-<Layout title={title} lang={lang} t={t}>
-    <main class="relative max-w-5xl mx-auto pt-20 pb-20 md:pt-40 text-default">
+<Layout title={title} lang={lang} t={t} socialLinks={socialLinks} email={email}>
+    <main class="relative max-w-5xl mx-auto pt-20 md:pt-40 text-default">
         <section class="relative z-10 mb-12 text-center">
             <h1
                 class="text-5xl font-heading text-accent mb-4 tracking-tight font-bold"
